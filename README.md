@@ -43,6 +43,17 @@ pipx install spellwell
 Alternatively, install directly with pip:
 
 ```bash
+# Check if pip is installed
+python -m pip --version || echo "Pip is not installed"
+
+# Install pip if not available
+# For Linux/macOS
+command -v pip >/dev/null 2>&1 || python -m ensurepip --upgrade
+
+# For Windows (run in PowerShell)
+# if (-not (Get-Command pip -ErrorAction SilentlyContinue)) { python -m ensurepip --upgrade }
+
+# Install SpellWell
 pip install spellwell
 ```
 

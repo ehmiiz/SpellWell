@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "spellwell"
-version = "0.1.0"
+version = "0.1.1"
 description = "SpellWell is a CLI application which allows you to practice spelling using your own wordlist."
 authors = ["Emil <emil@wirely.se>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/ehmiiz/SpellWell"
+repository = "https://github.com/ehmiiz/SpellWell"
+documentation = "https://github.com/ehmiiz/SpellWell"
 packages = [{include = "spellwell"}]
 
 [tool.poetry.dependencies]

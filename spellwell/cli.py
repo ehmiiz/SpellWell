@@ -55,7 +55,7 @@ def list(file):
     """List all words in your wordlist."""
     words_data = wordlist.get_words_with_sentences(file)
     if not words_data:
-        console.print("[yellow]Your wordlist is empty. Add some words with 'spellwell add'[/yellow]")
+        console.print("[yellow]Your wordlist is empty. Add words with 'spellwell add'[/yellow]")
         return
 
     items = []
