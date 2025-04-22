@@ -2,25 +2,42 @@
 
 `SpellWell` is a CLI application which allows you to practice spelling using your own wordlist.
 
-The workflow is as follows:
+## Quick Start
 
-1. While working on something and you're unsure of the spelling of a word, you can add it to your wordlist.
-2. You type out the looked up word yourself in your desired text editor.
-3. After you've reached a few words, you can start practicing spelling them.
-4. Add them to the ~/.spellwell file and run the application.
+```bash
+# Install
+pipx install spellwell
+
+# Add a tricky word
+spellwell add accommodate --sentence "I can accommodate up to five people."
+
+# Add more words interactively
+spellwell add
+
+# Practice your spelling
+spellwell practice
+
+# View your progress
+spellwell stats
+```
 
 ## Installation
 
-Install SpellWell directly from PyPI:
+### Recommended: Install with pipx (isolated environment)
+
+```bash
+# Install pipx if you don't have it already
+python -m pip install --user pipx
+python -m pipx ensurepath
+
+# Install SpellWell
+pipx install spellwell
+```
+
+Alternatively, install directly with pip:
 
 ```bash
 pip install spellwell
-```
-
-Or install the latest development version from GitHub:
-
-```bash
-pip install git+https://github.com/yourusername/SpellWell.git
 ```
 
 After installation, you can use the `spellwell` command directly from your terminal.
@@ -28,18 +45,21 @@ After installation, you can use the `spellwell` command directly from your termi
 ## Features
 
 - [x] Add words to your own wordlist with optional example sentences
-- [x] Randomize the words for the user
-- [x] Store the users results locally
-- [x] Mode: "Guess the word" - Asks the user to complete blurred out word
-- [x] Mode: "Use in sentence" - Shows example sentence with word blanked out
-- [x] Command: "add" - Add words to the wordlist
-- [x] Command: "list" - Show words from the wordlist
-- [x] Command: "practice" - Practice spelling your words
-- [x] Command: "stats" - View your practice statistics
-- [x] Command: "update" - Update words or add sentences
-- [x] Command: "clear" - Clear your wordlist
-- [x] Styling: Modern terminal app with Rich
-- [x] CLI standards: All commands support --help
+- [x] Practice spelling in two different modes
+- [x] Track your progress with detailed statistics
+- [x] Modern, colorful terminal interface
+
+## Commands
+
+- **add**: Add words to your wordlist with optional example sentences
+- **list**: Show all words from your wordlist
+- **practice**: Practice spelling words in different modes
+  - *sentence mode*: Shows example sentence with word blanked out
+  - *blurred mode*: Shows the word with some letters hidden
+- **stats**: View detailed statistics from your practice sessions
+- **update**: Update a word or its example sentence
+- **clear**: Remove specific words or clear entire wordlist
+- **bulk_update**: Add example sentences to multiple existing words at once
 
 ## Usage
 
@@ -47,11 +67,14 @@ After installation, you can use the `spellwell` command directly from your termi
 # Add words to your wordlist
 spellwell add apple --sentence "I eat an apple every day."
 
-# Add multiple words
+# Add multiple words interactively
 spellwell add
 
-# Practice your spelling
+# Practice your spelling (default: 10 random words)
 spellwell practice
+
+# Practice with specific settings
+spellwell practice --count 5 --mode blurred
 
 # See your wordlist
 spellwell list
@@ -60,15 +83,26 @@ spellwell list
 spellwell stats
 
 # Update an existing word with a sentence
+# The word `Apple` will be hidden when practicing
 spellwell update apple --sentence "An apple a day keeps the doctor away."
 
-# Get help
+# Add sentences to multiple words
+spellwell bulk_update
+
+# Remove a specific word
+spellwell clear --word apple
+
+# Clear your entire wordlist
+spellwell clear --all
+
+# Get help on any command
 spellwell --help
+spellwell practice --help
 ```
 
 ## Tools used
 
 - Poetry for dependency and package management
-- Click for CLI
-- Rich for styling
+- Click for CLI interface
+- Rich for terminal styling
 - Pytest for testing
