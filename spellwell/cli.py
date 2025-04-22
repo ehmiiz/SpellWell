@@ -247,16 +247,38 @@ def stats(file):
 
 
 @main.command()
+@click.option("--word", "-w", help="Specific word to remove from the wordlist.")
+@click.option("--all", "clear_all", is_flag=True, help="Clear the entire wordlist.")
 @click.option("--file", "-f", default=DEFAULT_WORDLIST_PATH, help="Path to the wordlist file.")
-def clear(file):
-    """Clear your wordlist."""
+def clear(word, clear_all, file):
+    """Clear words from your wordlist."""
+    # Check if wordlist exists and has content
     if not os.path.exists(file) or os.path.getsize(file) == 0:
         console.print("[yellow]Your wordlist is already empty.[/yellow]")
         return
     
-    if Confirm.ask("Are you sure you want to clear your wordlist?"):
-        open(file, 'w').close()
-        console.print("[green]Wordlist cleared successfully![/green]")
+    # Handle clearing a specific word
+    if word:
+        words_data = wordlist.get_words_with_sentences(file)
+        for existing_word, _ in words_data:
+            if existing_word.lower() == word.lower():
+                wordlist.remove_word(word, file)
+                console.print(f"[green]Word '[bold]{word}[/bold]' removed from wordlist![/green]")
+                return
+        console.print(f"[yellow]Word '[bold]{word}[/bold]' not found in wordlist.[/yellow]")
+        return
+    
+    # Handle clearing all words
+    if clear_all:
+        if Confirm.ask("Are you sure you want to clear your entire wordlist?"):
+            open(file, 'w').close()
+            console.print("[green]Wordlist cleared successfully![/green]")
+        return
+    
+    # If no option was provided, show help message
+    if not (word or clear_all):
+        console.print("[yellow]Please specify a word with --word or use --all to clear everything.[/yellow]")
+        console.print("Run 'spellwell clear --help' for more information.")
 
 
 @main.command()
