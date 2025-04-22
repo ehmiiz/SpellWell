@@ -1,6 +1,12 @@
 # SpellWell
 
-`SpellWell` is a CLI application which allows you to practice spelling using your own wordlist.
+`SpellWell` is a CLI application which allows you to practice spelling using your own wordlist directly in your terminal.
+
+To combat the problem of forgetting how to spell words because of autocomplete features in text editors, the `spellwell` CLI allows you to add words to your own wordlist and practice spelling them by having them blanked out in example sentences.
+
+`SpellWell` comes with the non-feature of being completely free of AI usage and it's ran locally on your own machine. It's free and open source (MIT license).
+
+It's therefore important that you add the correct spelled words to your wordlist.
 
 ## Quick Start
 
